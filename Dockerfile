@@ -23,10 +23,10 @@ RUN python src/train_model.py
 RUN useradd -m apiuser
 USER apiuser
 
-EXPOSE 8000
+EXPOSE 7860
 
 # Health check so Docker/Kubernetes knows when the container is ready
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-    CMD python3 -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
+    CMD python3 -c "import urllib.request; urllib.request.urlopen('http://localhost:7860/health')"
 
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "7860"]
